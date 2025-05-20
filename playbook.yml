@@ -1,6 +1,6 @@
 - name: Deploy code execution platform
   hosts: all
-  become: yes
+  become: true
 
   roles:
     - piston

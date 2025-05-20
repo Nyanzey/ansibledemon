@@ -5,7 +5,9 @@ services:
     image: ghcr.io/engineer-man/piston
     ports:
       - "2000:2000"
-    restart: always
+    environment:
+      - SANDBOX_DISABLED=1
+    restart: no
 
   # Example: Add 2 containers running your web app
   webapp1:
@@ -14,6 +16,8 @@ services:
       - PISTON_URL=http://piston-api:2000
     depends_on:
       - piston-api
+    ports:
+      - "3000:3000"
 
   webapp2:
     image: nyanzey/koderush-front
@@ -21,3 +25,5 @@ services:
       - PISTON_URL=http://piston-api:2000
     depends_on:
       - piston-api
+    ports:
+      - "3001:3000"

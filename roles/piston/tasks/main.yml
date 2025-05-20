@@ -5,11 +5,11 @@
     update: no
 
 - name: Build piston docker image
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: /opt/piston
-    build: true
+    build: always
 
 - name: Start piston containers
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: /opt/piston
     state: present
