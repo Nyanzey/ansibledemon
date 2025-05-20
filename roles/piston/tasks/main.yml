@@ -1,0 +1,15 @@
+- name: Clone piston repo
+  git:
+    repo: https://github.com/engineer-man/piston.git
+    dest: /opt/piston
+    update: no
+
+- name: Build piston docker image
+  community.docker.docker_compose:
+    project_src: /opt/piston
+    build: true
+
+- name: Start piston containers
+  community.docker.docker_compose:
+    project_src: /opt/piston
+    state: present

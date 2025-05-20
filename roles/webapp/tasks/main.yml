@@ -1,0 +1,9 @@
+- name: Copy docker-compose file for webapp and piston orchestration
+  copy:
+    src: files/docker-compose.yml
+    dest: /opt/exec-stack/docker-compose.yml
+
+- name: Deploy webapp and piston services together
+  community.docker.docker_compose:
+    project_src: /opt/exec-stack
+    state: present

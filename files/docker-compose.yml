@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  piston-api:
+    image: ghcr.io/engineer-man/piston
+    ports:
+      - "2000:2000"
+    restart: always
+
+  # Example: Add 2 containers running your web app
+  webapp1:
+    image: nyanzey/koderush-front
+    environment:
+      - PISTON_URL=http://piston-api:2000
+    depends_on:
+      - piston-api
+
+  webapp2:
+    image: nyanzey/koderush-front
+    environment:
+      - PISTON_URL=http://piston-api:2000
+    depends_on:
+      - piston-api
